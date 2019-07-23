@@ -1,0 +1,59 @@
+<ion-content padding>
+  <div style="height: 36px"></div>
+  <mat-card>
+    <mat-card-title>
+      Créer
+    </mat-card-title>
+    <mat-card-content>
+      <ion-item full>
+        <ion-label floating>
+          Nom :
+        </ion-label>
+        <ion-input required [(ngModel)]="newUser.displayName" required type='text' placeholder="Nom du vendeur"></ion-input>
+      </ion-item>
+      <ion-item full>
+          <ion-label floating>
+              Numéro :
+            </ion-label>
+        <ion-input required [(ngModel)]="newUser.phone"  type='number' placeholder="Numéro de téléphone du vendeur"></ion-input>
+      </ion-item>
+      <ion-item full>
+          <ion-label floating>
+              Mail :
+            </ion-label>
+        <ion-input required [(ngModel)]="newUser.email"  placeholder="Adresse  e-mail du vendeur"></ion-input>
+      </ion-item>
+      <ion-item full>
+          <ion-label floating>
+              Adresse :
+            </ion-label>
+        <ion-textarea  [(ngModel)]="newUser.adress"  rows="1" placeholder="Adresse du vendeur"></ion-textarea>
+      </ion-item>
+      <ion-item full>
+          <ion-label floating>
+              Autres :
+            </ion-label>
+        <ion-textarea [(ngModel)]="newUser.autresInfos"  rows="1" placeholder="infos supplémentaires"></ion-textarea>
+      </ion-item>
+    </mat-card-content>
+    <mat-card-actions>
+      <ion-button expand='full' (click)='submit()'>AJOUTER</ion-button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card class="mt-2">
+    <mat-card-title>Liste des vendeurs</mat-card-title>
+    <ng-container *ngIf='seller$ | async as sellers'>
+      <ion-list>
+        <ion-item *ngFor='let seller of sellers'>
+          <ion-label>
+            <h2>
+              {{ seller.displayName }}
+            </h2>
+            <p> {{seller.phone}} </p>
+          </ion-label>
+
+        </ion-item>
+      </ion-list>
+    </ng-container>
+  </mat-card>
+</ion-content>

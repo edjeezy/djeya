@@ -1,0 +1,57 @@
+<ion-content padding>
+    <div style='height: 30px;'></div>
+    <h2 margin>Ajouter</h2>
+    <p padding margin>Image : {{uploadPercent | async}}</p>
+    <div margin>
+        <ion-item>
+            <input (change)='uploadFile1($event)' required type="file" placeholder="">
+        </ion-item>
+        <ion-item>
+                <input (change)='uploadFile2($event)' required type="file" placeholder="">
+        </ion-item>
+        <ion-item>
+                <ion-label  position="floating">Nom du produit</ion-label>
+            <ion-input [(ngModel)]="nom" required type="text" ></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Description</ion-label>
+            <ion-textarea [(ngModel)]="description"></ion-textarea>
+        </ion-item>
+        <ion-grid no-padding>
+            <ion-row>
+                <ion-col size='10'>
+                    <ion-item>
+                        <ion-label>Catégorie</ion-label>
+                        <ion-select [(ngModel)]="category" (ionChange)='selectCategories()' multiple='false' placeholder='Séléctionner' okText="Okay" cancelText="Dismiss">
+                            <ion-select-option *ngFor='let cat of c' [value]='{"val": cat.value,"id": cat.id}'>{{cat.displayName}}</ion-select-option>
+                        </ion-select>
+                      </ion-item>
+                </ion-col>
+                <ion-col size='10'>
+                        <ion-item>
+                            <ion-label>Sous Catégorie</ion-label>
+                            <ion-select [(ngModel)]="subCategory" (ionChange)='selectSubCategories()' multiple='false' placeholder='Séléctionner' okText="Okay" cancelText="Dismiss">
+                                <ion-select-option *ngFor='let sub of subCategories[0]' [value]='{"val": sub.subcat_value,"id": sub.id, tags: sub.tags}'>{{sub.subcat_display_name}}</ion-select-option>
+                            </ion-select>
+                          </ion-item>
+                    </ion-col>
+                <ion-col size='10'>
+                            <ion-item>
+                                <ion-label>Tag</ion-label>
+                                <ion-select [(ngModel)]="tag" (ionChange)='showTag()' multiple='false' placeholder='Séléctionner' okText="Okay" cancelText="Dismiss">
+                                    <ion-select-option *ngFor='let t of subCategory.tags' [value]='{"val": t.value,"id": t.id}'>{{t.display_name}}</ion-select-option>
+                                </ion-select>
+                              </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-item>
+            <ion-label  position="floating">Prix</ion-label>
+            <ion-input [(ngModel)]="prix" required type="number" placeholder="en CFA"></ion-input>
+        </ion-item>
+    </div>
+    <div padding>
+        <ion-button (click)="uploadProduct()" color='secondary' expand="full" fill="outline" shape='round'>Ajouter</ion-button>
+    </div>
+
+</ion-content>

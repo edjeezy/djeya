@@ -1,0 +1,45 @@
+<ion-content padding>
+  <div style="height: 30px;"></div>
+  <h2 margin>Mes commandes</h2>
+  <div class="container-fluid">
+    <ng-container *ngIf='commandes$ | async as commandes;else loading'>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12"  *ngFor='let order of commandes'>
+              <mat-card class="centerify">
+                <mat-card-header>
+
+                  <img mat-card-avatar [src]="order.photoUrl">
+
+
+              <mat-card-title> {{order.displayName}} </mat-card-title>
+              <mat-card-subtitle> {{order.date | date:'fullDate'}} </mat-card-subtitle>
+                </mat-card-header>
+                <ion-list>
+                  <ion-list-header>Achats</ion-list-header>
+                  <ion-item no-lines >
+                    <ion-avatar slot="start">
+                        <img [src]="order.image1">
+                    </ion-avatar>
+                    <ion-label>
+                    <h2> {{order.name}} </h2>
+                    <h4> {{order.prix }} CFA</h4>
+                    </ion-label>
+                 </ion-item>
+                </ion-list>
+
+                <mat-card-actions>
+                  <ion-button>VALIDER </ion-button>
+                </mat-card-actions>
+              </mat-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ng-container>
+    <ng-template #loading>
+      <div class='centerify'>
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
+  </div>
+</ion-content>

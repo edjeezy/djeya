@@ -1,0 +1,59 @@
+<ion-content>
+  <div class='container'>
+    <div class="card mt-4">
+
+    <ng-container  *ngIf='cart | async as panier;else loading'>
+        <mat-progress-bar color='accent' mode="deterinate" value="30"></mat-progress-bar>
+        <div margin>
+            <h2>Confirmer Panier</h2>
+        </div>
+      <ion-grid fixed>
+      <ion-item  *ngFor="let p of panier" >
+          <ion-avatar slot="start">
+              <img [src]="p.image1">
+            </ion-avatar>
+          <ion-label text-wrap>
+              <ion-text color="primary">
+                <h3>{{p.name}}</h3>
+              </ion-text>
+              <p>Quanité: {{p.quantity}} </p>
+              <ion-text color="secondary">
+                <p>{{p.total}} CFA</p>
+              </ion-text>
+            </ion-label>
+
+
+            <ion-icon size='medium' slot='end' name='trash'></ion-icon>
+      </ion-item>
+      </ion-grid>
+    </ng-container>
+    <ng-template #loading>
+        <mat-progress-bar color='accent' mode="indeterminate" value="30"></mat-progress-bar>
+        <div margin>
+            <h2>Confirmer Panier</h2>
+        </div>
+        <div class="m-2 centerify">
+          <div class="mx-auto">
+              <mat-spinner></mat-spinner>
+          </div>
+        </div>
+    </ng-template>
+  </div>
+</div>
+</ion-content>
+ <ion-footer>
+    <div class="container">
+      <div style="display:flex;flex-direction:row;align-items:center;justify-content:baseline">
+          <div>
+              <h3 text-wrap> <strong>TOTAL : {{ total }} CFA</strong> </h3>
+          </div>
+          <div class="ml-auto" (click)='goToProfilSelection()'>
+            <ion-button color='secondary' size='large'>SUIVANT
+              <ion-icon slot="end" name='arrow-round-forward'></ion-icon>
+            </ion-button>
+          </div>
+      </div>
+
+
+    </div>
+  </ion-footer>

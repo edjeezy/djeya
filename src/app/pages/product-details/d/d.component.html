@@ -1,0 +1,73 @@
+<ion-content>
+  <ng-container *ngIf='product$ | async as product;else loading'>
+    <div class="container">
+        <ion-grid>
+            <ion-row  align-items-center>
+              <ion-col size='12' size-sm='6'>
+                <img [src]="product.image1"  width="100%" alt="">
+              </ion-col>
+              <ion-col size='12' size-sm='6'>
+                <h3>{{ product.name }}</h3>
+                <h4>
+                  <ion-text color='secondary'>  {{ product.prix }} CFA </ion-text>
+                </h4>
+                <div class="my-2">
+                  <ion-label class="ml-1">Quantité</ion-label>
+
+                  <div style="display: flex;flex-direction: row; align-items: center">
+                      <ion-button size="small" shape="round" color="light"  class="px-1" (click)='setQuantity(-1)'>
+                          <ion-icon slot="icon-only" name="remove" ></ion-icon>
+                      </ion-button>
+                      <h3 class="px-1 pt-2">{{_quantity}}</h3>
+                      <ion-button size="small" shape="round" color="light" class="px-1" shape  (click)='setQuantity(1)'>
+                          <ion-icon slot="icon-only" name="add"></ion-icon>
+                        </ion-button>
+
+                  </div>
+
+                </div>
+                <ion-button color='primary' (click)='addToCart(product)' >ACHETER</ion-button>
+                <ion-button color='secondary' (click)='ajoutPanier(product)'>AJOUTER AU PANIER</ion-button>
+                <p class='text-secondary' margin-top> {{product.description}} </p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <div class="card" align-items-center padding>
+                  <h6>Paiement a la livraison                  </h6>
+                  <ion-button fill='outline' size='small' shape='round' slot='icon-only' color='success'>
+                      <ion-icon name='checkmark' ></ion-icon>
+                  </ion-button>
+                </div>
+              </ion-col>
+              <ion-col>
+                  <div class="card" align-items-center padding>
+                      <h6>Livraison partout à Dakar</h6>
+                      <ion-button fill='outline' size='small' shape='round' slot='icon-only' color='success'>
+                          <ion-icon name='checkmark' ></ion-icon>
+                      </ion-button>
+                    </div>
+              </ion-col>
+              <ion-col>
+                  <div class="card" align-items-center padding>
+                      <h6>Politique de retour
+
+                      </h6>
+                      <ion-button fill='outline' size='small' shape='round' slot='icon-only' color='success'>
+                          <ion-icon name='checkmark' ></ion-icon>
+                      </ion-button>
+                    </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+    </div>
+
+  </ng-container>
+
+  <ng-template #loading>
+    <div class="centerify h-100">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+
+</ion-content>

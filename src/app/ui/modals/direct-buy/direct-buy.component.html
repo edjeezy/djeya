@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>{{ data.product.name }} ajouté au panier</h1>
+<div mat-dialog-content>
+  <ion-list>
+    <ion-item>
+      <ion-label slot="start">
+        Quantité
+      </ion-label>
+      <ion-label slot="end" color="primary" text-wrap>
+        {{ data.quantity }}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label class="h2" slot="start">
+        TOTAL:
+      </ion-label>
+      <ion-label class="h2" slot="end" color="primary" text-wrap>
+        {{ finalPrice }} CFA
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</div>
+<div mat-dialog-actions>
+  <div class="centerify mx-auto">
+    <ion-button cdkFocusInitial (click)="GoToCheckout()">Passer Commande</ion-button>
+
+    <div class="text-center pt-2 pb-1">
+      <p class="secondary">OU</p>
+    </div>
+    <a color="light" (click)="addToCart()">Poursuivre mes achats</a>
+  </div>
+</div>

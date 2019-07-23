@@ -1,0 +1,35 @@
+<ion-content>
+  <div style="height: 100%" class="centerify login-bg">
+    <mat-card style="max-width:800px;" class="mat-elevation-z12">
+      <mat-card-title text-center>
+        Connectez vous
+      </mat-card-title>
+      <mat-card-content>
+        <ion-label color="danger"> {{ error }} </ion-label>
+        <div class="mt-2">
+          <ion-item>
+            <ion-label floating>
+              Email
+            </ion-label>
+            <ion-input [(ngModel)]="email" type="text" placeholder="Adresse e-mail"></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label floating>
+              Mot de passe
+            </ion-label>
+            <ion-input
+              [(ngModel)]="password"
+              type="password"
+              placeholder="Mot de passe"
+            ></ion-input>
+          </ion-item>
+        </div>
+        <div class="m-2 mt-4">
+          <ion-button shape="round" (click)="login()" expand="full">
+            Enregistrer
+          </ion-button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ion-content>

@@ -1,0 +1,31 @@
+.cool-tile {
+  background: #e6e6e6b4 !important;
+  color: #2c2d78 !important;
+  font-weight: bold;
+  flex-direction: column !important;
+  align-items: baseline !important;
+}
+
+/* .mat-grid-tile {
+  border: 1px solid rgba(0, 0, 0, 0.219) !important;
+} */
+
+.hover-tile:hover {
+ box-shadow: -1px 5px 14px -1px rgba(235,183,235,1);
+
+}
+
+.white-bg {
+  background: white;
+  border-top-color: white;
+}
+
+
+.blue-border {
+  border-color: #2c2d78 !important;
+}
+
+.swiper-slide img {
+  height: 250px;
+  max-width:300px;
+}

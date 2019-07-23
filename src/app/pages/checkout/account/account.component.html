@@ -1,0 +1,66 @@
+<ion-content>
+  <div class="container">
+    <div class="card mt-4">
+        <mat-progress-bar color='accent' mode="determinate" value="60"></mat-progress-bar>
+        <div margin>
+            <h2>Informations d'utilisateur: </h2>
+            <p class="text-secondary">
+              Connectez vous par facebook ou par mail.
+              Si vous n'avez aucun des deux vous pouvez aussi acheter directement sur whatsapp.
+            </p>
+        </div>
+        <div class="m-2">
+            <firebase-ui
+
+            (signInSuccessCallback)='activateNext()'
+            ></firebase-ui>
+        </div>
+
+          <div class="centerify">
+            <div class="py-1">
+            <ion-item-divider>
+                  <h4>OU</h4>
+            </ion-item-divider>
+            </div>
+            <div class="mt-1 mb-4">
+              <ion-button color='light'>
+                <ion-label color="success">
+                  Acheter par Whatsapp
+                </ion-label>
+                <ion-icon name='whatsapp' color="success" slot='end'></ion-icon>
+              </ion-button>
+            </div>
+          </div>
+    </div>
+    <ng-template #loading>
+        <mat-progress-bar color='accent' mode="indeterminate" value="60"></mat-progress-bar>
+        <div margin>
+            <h2>Connéxion Via: </h2>
+        </div>
+
+    </ng-template>
+  </div>
+</ion-content>
+<ion-footer>
+    <div class="container">
+      <div style="display:flex;flex-direction:row;align-items:center;justify-content:baseline">
+          <div>
+          </div>
+          <div class="ml-auto" >
+            <ng-container *ngIf='activated | async;else disactivated'>
+                <ion-button size='large' color='secondary'>SUIVANT
+                    <ion-icon slot="end" name='arrow-round-forward'></ion-icon>
+                  </ion-button>
+            </ng-container>
+            <ng-template #disactivated>
+                <ion-button size='large' color='medium' disabled>SUIVANT
+                    <ion-icon slot="end" name='arrow-round-forward'></ion-icon>
+                  </ion-button>
+            </ng-template>
+
+          </div>
+      </div>
+
+
+    </div>
+  </ion-footer>

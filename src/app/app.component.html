@@ -1,3 +1,29 @@
-<ion-app>
-  <ion-router-outlet></ion-router-outlet>
-</ion-app>
+
+<ion-menu side="start" menuId="mainMenu" type='reveal'>
+  <ion-header>
+    <ion-toolbar color="secondary">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-menu side="end" menuId="searchMenu" type='overlay'>
+  <ion-content>
+      <app-search-menu></app-search-menu>
+  </ion-content>
+</ion-menu>
+<ion-menu side="end" menuId="cartMenu" type='overlay'>
+  <ion-content>
+      <app-cart-menu></app-cart-menu>
+  </ion-content>
+</ion-menu>
+<ion-router-outlet main></ion-router-outlet>
+

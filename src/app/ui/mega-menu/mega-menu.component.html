@@ -1,0 +1,46 @@
+<div class="container-fluid mx-auto white-bg" style='max-height: 98% !important;overflow-y: scroll;'>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-chip color="secondary" [routerLink]="['/categories/c/higyenne_beaute']" (mouseenter)="currentCat.next({ name: 'higyenne', id: 0 })">
+          <ion-label>Higyénne et Beauté</ion-label>
+        </ion-chip>
+
+        <ion-chip color="secondary"
+        [routerLink]="['/categories/c/univers_bebe']"
+        (mouseenter)="currentCat.next({ name: 'bebe', id: 1 })">
+          <ion-label>Univers Bébé</ion-label>
+        </ion-chip>
+
+        <ion-chip color="secondary"
+        [routerLink]="['/categories/c/entretient_maison']"
+        (mouseenter)="currentCat.next({ name: 'entretient', id: 2 })">
+          <ion-label>Entretient et maison</ion-label>
+        </ion-chip>
+
+        <ion-chip color="secondary" (mouseenter)="currentCat.next({ name: 'pack', id: 0 })">
+          <ion-label>Nos Packs</ion-label>
+        </ion-chip>
+      </ion-col>
+      <ion-col size="12" >
+        <ion-grid >
+          <ion-row>
+            <ng-container *ngIf="(subcat$ | async) as subcat">
+              <ion-row>
+                  <ion-col size="auto"  *ngFor="let sub of subcat.values">
+                    <a mat-button (click)='navCat(sub.titleLink)' style="color:#ffffff;cursor: pointer" >
+                     <strong>{{ sub.title }}</strong>
+                    </a>
+
+                    <!-- <div *ngFor='let tag of sub.links' class="py-1" (click)='navCat(tag.url)' >
+                      <a style="color:white;text-decoration:none;cursor: pointer"> {{tag.name}}</a>
+                    </div> -->
+                  </ion-col>
+              </ion-row>
+            </ng-container>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

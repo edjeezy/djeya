@@ -1,0 +1,23 @@
+<ion-content style="border-color:#19227E" >
+    <div class="container-fluid p-0">
+        <mat-toolbar style="border-color:#19227E" padding class="nav-flex-between"color="primary">
+              <span class='h2'>#{{ processTitle(categoryName) | titlecase }} </span>
+              <span style="flex: 1 1 0;"></span>
+                <ion-select placeholder='Filtrer par'>
+                  <ion-select-option value='a'>Test</ion-select-option>
+                </ion-select>
+        </mat-toolbar>
+      </div>
+      <ng-container *ngIf='categoryProducts | async as categories;'>
+        <div class="container">
+            <app-categories-display
+            *ngFor='let subcat of categories'
+            [showLinks]='true'
+            [links]='"/categories/sous-categorie/" + subcat[0]?.sub_category_value'
+            [title]="processTitle(subcat[0]?.sub_category_value) | titlecase"
+            [products]='subcat' [tileConf]='tileConfig'></app-categories-display>
+
+        </div>
+
+      </ng-container>
+</ion-content>

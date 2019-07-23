@@ -1,0 +1,68 @@
+<ion-content padding margin-top>
+  <div style="height:40px"></div>
+  <div class="modifier" *ngIf='mod | async as m'>
+    {{m.name}}
+      <ion-grid no-padding>
+          <ion-row>
+              <ion-col size='10'>
+                  <ion-item>
+                      <ion-label>Catégorie</ion-label>
+                      <ion-select [(ngModel)]="category" (ionChange)='selectCategories()' multiple='false' placeholder='Séléctionner' okText="Okay" cancelText="Dismiss">
+                          <ion-select-option *ngFor='let cat of c' [value]='{"val": cat.value,"id": cat.id}'>{{cat.displayName}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+              </ion-col>
+              <ion-col size='10'>
+                      <ion-item>
+                          <ion-label>Sous Catégorie</ion-label>
+                          <ion-select [(ngModel)]="subCategory" (ionChange)='selectSubCategories()' multiple='false' placeholder='Séléctionner' okText="Okay" cancelText="Dismiss">
+                              <ion-select-option *ngFor='let sub of subCategories[0]' [value]='{"val": sub.subcat_value,"id": sub.id, tags: sub.tags}'>{{sub.subcat_display_name}}</ion-select-option>
+                          </ion-select>
+                        </ion-item>
+                  </ion-col>
+              <ion-col size='10'>
+                          <ion-item>
+                              <ion-label>Tag</ion-label>
+                              <ion-select [(ngModel)]="tag" multiple='false' placeholder='Séléctionner' okText="Okay" cancelText="Dismiss">
+                                  <ion-select-option *ngFor='let t of subCategory.tags' [value]='{"val": t.value,"id": t.id}'>{{t.display_name}}</ion-select-option>
+                              </ion-select>
+                            </ion-item>
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+      <ion-button (click)='modifyProd()' >UPDATE</ion-button>
+  </div>
+
+    <div style='height: 30px;'></div>
+    <div>
+
+      <h2 >Mes Produits</h2>
+      <ion-fab-button
+      (click)='nav("/admin/ajouter-produits")'
+      style="position:absolute;top:80px;right:10px">
+          <ion-icon name='add'></ion-icon>
+      </ion-fab-button>
+
+    </div>
+
+
+
+      <ng-container *ngIf='products | async as p' >
+
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6" size-md='4' size-lg='3' *ngFor='let produit of p'>
+                <div (click)='onSelect(produit)'
+                style='border: 1px solid lightgrey;border-radius: 4px;'>
+                  <img [src]="produit.image1" [alt]="produit.name" width='200px' height='225px'>
+                  <div style="padding: 2px 8px">
+                      <p>{{produit.name}}</p>
+                      <p>{{produit.prix}}</p>
+                  </div>
+                </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ng-container>
+  </ion-content>

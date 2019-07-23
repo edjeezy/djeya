@@ -1,0 +1,36 @@
+<ion-header>
+<app-main-nav></app-main-nav>
+</ion-header>
+
+<ion-content>
+  <div text-center>
+    <h2>
+        Connéxion
+    </h2> </div>
+  <div class="centerify-r w-100">
+    <div class="row">
+      <div class="col-12 col-md-6">
+          <div class="mx-auto my-auto">
+              <firebase-ui
+              (signInSuccessWithAuthResult)="successCallback($event)"
+              (signInFailure)="errorCallback($event)"
+              ></firebase-ui>
+          </div>
+      </div>
+      <div class="col-12 col-md-6">
+
+          <div class="mx-auto my-auto" text-center>
+              <img width="150px" class="mx-auto" src='assets/icon/djeya.svg'/>
+              <h4>Connectez vous à Djeya pour :</h4>
+              <ul>
+                <li>Profiter des prix les plus bas</li>
+                <li>Profiter des packs Djeya livrés gratuitement</li>
+                <li>Soyez les premiers a etre avertis de nos ventes flash</li>
+              </ul>
+            </div>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

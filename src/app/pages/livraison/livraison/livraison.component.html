@@ -1,0 +1,121 @@
+<app-main-nav></app-main-nav>
+
+<ion-content>
+  <div class="container" *ngIf="!submitted">
+    <div class="card mt-4">
+      <ng-container *ngIf="(you | async) as user; else loader">
+        <mat-progress-bar color="accent" mode="determinate" value="90"></mat-progress-bar>
+        <div margin>
+          <h2>Options de livraison:</h2>
+          <p class="text-secondary">
+            <ion-text color="secondary">Paiement à la livraison </ion-text> sur l'ensemble de nos
+            produits 😍
+          </p>
+        </div>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img [src]="user.photoURL" />
+          </ion-avatar>
+          <ion-label text-wrap>
+            <ion-text color="primary">
+              <h3>{{ user.displayName }}</h3>
+            </ion-text>
+            <p>{{ user.email }}</p>
+          </ion-label>
+        </ion-item>
+        <form #finalForm="ngForm" (ngSubmit)="onSubmit()">
+          <ion-item>
+            <ion-label position="floating">Numéro Téléphone</ion-label>
+            <ion-input name="nom" required type="tel" [(ngModel)]="model.phone"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating" disabled>Région</ion-label>
+            <ion-input
+              name="region"
+              required
+              type="text"
+              value="Dakar"
+              [(ngModel)]="model.region"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Ville</ion-label>
+            <ion-select
+              name="ville"
+              required
+              [(ngModel)]="model.ville"
+              value="brown"
+              okText="Okay"
+              cancelText="Dismiss"
+            >
+              <ion-select-option value="brown">Plateau</ion-select-option>
+              <ion-select-option value="blonde">Niarry Tally</ion-select-option>
+              <ion-select-option value="black">Grand Dakar</ion-select-option>
+              <ion-select-option value="red">Sicap</ion-select-option>
+              <ion-select-option value="yoff">Yoff</ion-select-option>
+              <ion-select-option value="nord-foire-damel">Nord-foire Damel</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Indications supplémentaires</ion-label>
+            <ion-textarea
+              name="infos"
+              rows="4"
+              [(ngModel)]="model.infoSuplementaire"
+            ></ion-textarea>
+          </ion-item>
+          <div>
+            <ion-button type="submit" [disabled]="!finalForm.form.valid" expand="full"
+              >OK</ion-button
+            >
+          </div>
+        </form>
+      </ng-container>
+      <ng-template #loader>
+        <mat-progress-bar color="accent" mode="indeterminate" value="30"></mat-progress-bar>
+        <div margin>
+          <h2>Confirmer Panier</h2>
+        </div>
+        <div class="m-2 centerify">
+          <div class="mx-auto">
+            <mat-spinner></mat-spinner>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <div class="container" *ngIf="submitted">
+    <div class="card mt-4">
+      <ng-container>
+        <mat-progress-bar color="accent" mode="determinate" value="100"></mat-progress-bar>
+        <div margin>
+          <h2>Commande enregistrée:</h2>
+          <p class="text-secondary">
+            Commande éfféctuée avec succés. Notez que les frais de livraison sont a hauteur de
+            <ion-text color='secondary'>1 000 CFA</ion-text>
+          </p>
+        </div>
+        <div class="m-2">
+          <h5 margin-left> <strong>Profitez en pour : </strong> </h5>
+          <ion-item  >
+                  <ion-icon slot='start' color='secondary' name='notifications-outline'></ion-icon>
+              <ion-label text-wrap>
+                  <ion-text color="primary">
+                    <h3>Activer les notifications</h3>
+                  </ion-text>
+                  <p> Recevez en premier les meilleures offres Djeya. Désactiver à tout moment dans les parametres </p>
+                  <ion-button disabled color="secondary">
+                    Activer
+                  </ion-button>
+                </ion-label>
+          </ion-item>
+          <div class=' mt-2 mb-4 centerify'>
+              <ion-button color="primary" [routerLink]="['/home']" routerLinkActive="router-link-active" >
+                  Retourner à la page d'accueil
+                </ion-button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ion-content>

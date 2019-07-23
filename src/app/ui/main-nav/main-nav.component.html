@@ -1,0 +1,43 @@
+<ion-header mode="ios">
+  <ion-toolbar color="primary" mode='md' style="border-color:#19227E;">
+    <ion-buttons slot="start">
+      <!-- <ion-menu-button menu="mainMenu"></ion-menu-button> -->
+      <ion-button (mouseenter)="openMegaMenu($event)">
+        <ion-icon slot='start' name='menu'></ion-icon>
+          <ng-container *ngIf="!_responsive.isMobile()">
+        CATEGORIES
+        </ng-container>
+        <ion-icon slot="end"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title text-sm-center mode='md' [routerLink]='["/home"]' >
+      <img src="assets/icon/logo_djeya.png"  />
+      </ion-title
+    >
+    <ion-buttons slot="end">
+      <ion-button shape="round" fill="outline" (click)="openSearch()">
+        <ion-icon slot="start" name="search"></ion-icon>
+        <ng-container *ngIf="!_responsive.isMobile()"> | Chercher...</ng-container>
+      </ion-button>
+      <ion-button (click)="openCart()">
+        <ion-badge color="secondary"> {{ cartLenght | async }}</ion-badge>
+        <ion-icon slot="icon-only" name="cart"> </ion-icon>
+      </ion-button>
+
+      <ion-button>
+        <ion-icon slot="icon-only" name="person"></ion-icon>
+        <ion-badge color="secondary">2</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <div
+    *ngIf="(megaMenuOpenState | async)"
+    (mouseleave)="closeMegaMenu($event)"
+    style="background:#2c2d78;width: 100%;max-height: 90vh !important;overflow-y: scroll  !important;"
+  >
+  <ion-button class="mx-auto"  (click)='closeMegaMenu("")' *ngIf="_responsive.isMobile()">
+    <ion-icon slot='icon-only' name='close'></ion-icon>
+  </ion-button>
+   <app-mega-menu></app-mega-menu>
+  </div>
+</ion-header>

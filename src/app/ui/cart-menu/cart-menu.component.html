@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Panier
+        <ion-chip color='secondary'>
+            <ion-label color="light">{{ numItems }}</ion-label>
+          </ion-chip>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ng-container *ngIf='my_cart | async as cart;else load'>
+<ion-content>
+
+  <ng-container *ngIf='cart.length === 0'>
+    <div class="centerify">
+      <ion-text margin color='primary'>
+      <h2> Rien dans le panier </h2>
+      </ion-text>
+    </div>
+  </ng-container>
+  <div *ngIf='cart.length > 0'>
+      <ion-item color='dark'>
+          <ion-label text-wrap><strong>Total :</strong> {{total}} CFA</ion-label>
+      </ion-item>
+      <div class="m-2">
+        <ion-button color='primary' [routerLink]='["/checkout/p/_"]' expand='full'>
+          PASSER COMMANDE
+        </ion-button>
+      </div>
+  </div>
+
+    <ion-list>
+        <ion-item  *ngFor="let p of cart" >
+            <ion-avatar slot="start">
+                <img [src]="p.image1">
+              </ion-avatar>
+            <ion-label text-wrap>
+                <ion-text color="primary">
+                  <h3>{{p.name}}</h3>
+                </ion-text>
+                <p>Quanité: {{p.quantity}} </p>
+                <ion-text color="secondary">
+                  <p>{{p.total}} CFA</p>
+                </ion-text>
+              </ion-label>
+          </ion-item>
+      </ion-list>
+
+  </ion-content>
+
+</ng-container>
+<ng-template #load>
+  <ion-content>
+      <mat-progress-bar color='accent' mode="indeterminate" value="30"></mat-progress-bar>
+      <div margin>
+          <h2>Chargement du Panier</h2>
+      </div>
+      <div class="m-2 centerify">
+        <div class="mx-auto">
+            <mat-spinner></mat-spinner>
+        </div>
+      </div>
+
+  </ion-content>
+
+  </ng-template>
+
+  <ion-footer>
+
+    </ion-footer>

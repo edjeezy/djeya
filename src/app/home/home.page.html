@@ -1,12 +1,62 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-main-nav></app-main-nav>
+<ion-content>
+  <div class="container">
+    <ion-grid no-pading>
+      <ion-row>
+        <ion-col size="12">
+            <ion-slides pager="true" #heroSlides >
+                <ion-slide>
+                 <img class="img-fluid hero-img" src='assets/images/back-2.png'/>
+                </ion-slide>
+                <ion-slide>
+                    <img class="img-fluid hero-img" src='assets/images/back-1.jpg'/>
+                  </ion-slide>
+                <ion-slide>
+                 <img class="img-fluid hero-img" src='assets/images/herbal-hero-1.jpg'/>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://beta.ionicframework.com/docs/">docs</a> will be your guide.</p>
+                </ion-slide>
+              </ion-slides>
+      </ion-col>
+      </ion-row>
+        <ion-row>
+          <ion-col size="6" size-md='3'>
+             <div class="hero-3 centerify" [routerLink]="['/categories/c/higyenne_beaute']" routerLinkActive="router-link-active" >
+                <img width="70px" src='/assets/icon/cream.svg' size='large'/>
+               <p class="p-0 m-0">Higyéné et beauté</p>
+             </div>
+            </ion-col>
+          <ion-col size="6" size-md='3'>
+            <div class="hero-3 centerify" >
+                <img width="70px" src='/assets/icon/teddy-bear.svg' size='large'/>
+                <p class="p-0 m-0">Univers Bébé</p>
+            </div>
+          </ion-col>
+          <ion-col size="6" size-md='3'>
+              <div class="hero-3 centerify" >
+                <img width="70px" src='/assets/icon/products.svg' size='large'/>
+                  <p class="p-0 m-0">Entretient maison</p>
+                </div>
+          </ion-col>
+          <ion-col size="6" size-md='3'>
+              <div class="hero-3 centerify" >
+                <img width="70px" src='/assets/icon/package.svg' size='large'/>
+                  <p class="p-0 m-0">Nos Packs</p>
+                </div>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+    <app-categories-display title='Higyénne et Beauté'
+    [showLinks]='true'
+    [links]="'/categories/c/higyenne_beaute'"
+    [products]="products1 | async" [tileConf]='tileConfig'></app-categories-display>
+    <app-categories-display title='Univers Bébé'
+    [showLinks]='true'
+    [links]="'/categories/c/univers_bebe'"
+    [products]="products2 | async" [tileConf]='tileConfig'></app-categories-display>
+    <app-categories-display title='Entretient et Maison'
+    [showLinks]='true'
+    [links]="'/categories/c/entretient_maison'"
+    [products]="products3 | async"></app-categories-display>
+  </div>
+
 </ion-content>

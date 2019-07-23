@@ -1,0 +1,94 @@
+<ion-card-header mode="ios" class="pl-1">
+  <div style="display:flex;flex-direction:row;">
+    <ion-card-title color="primary" mode="ios"> {{ title }} </ion-card-title>
+
+    <ion-button class="ml-auto" size="small" fill="outline" shape="round">
+      <ion-card-subtitle>VOIR PLUS</ion-card-subtitle>
+      <ion-icon name="add" slot="end"></ion-icon>
+    </ion-button>
+  </div>
+</ion-card-header>
+<ion-grid>
+  <ion-row no-padding>
+    <ion-col no-padding size="12">
+      <!--                 <mat-chip-list selectable="true" (chipSelectionChanges)="getNavEv($event)">
+                        <mat-chip  color='primary'>Gels douche et savons</mat-chip>
+                        <mat-chip color='primary'>Déodorants</mat-chip>
+                        <mat-chip color='primary'>Soins Cheuveux</mat-chip>
+                        <mat-chip color='primary'>Soin Visage</mat-chip>
+                        <mat-chip color='primary'> <ion-icon name='add'></ion-icon></mat-chip>
+
+                </mat-chip-list>
+ -->
+      <ion-chip color="secondary">
+        <ion-label color="secondary">Gels douche et savons</ion-label>
+      </ion-chip>
+
+      <ion-chip color="secondary" color="secondary">
+        <ion-label>Déodorants</ion-label>
+      </ion-chip>
+
+      <ion-chip color="secondary">
+        <ion-label>Soins Cheuveux</ion-label>
+      </ion-chip>
+
+      <ion-chip color="secondary">
+        <ion-label>Soin Visage</ion-label>
+      </ion-chip>
+      <div class="my-2 pt-2">
+        <ion-card-subtitle mode="ios" class="px-2"></ion-card-subtitle>
+        <div *ngIf="products; else loading">
+          <!--           <mat-grid-list *ngIf="(tileConf | async) as t" [rowHeight]="t.rowHeight" [cols]="t.cols">
+            <mat-grid-tile
+              class="card hover-tile"
+              *ngFor="let product of products"
+              [routerLink]="['/product-details/d', product.id]"
+              routerLinkActive="router-link-active"
+            >
+              <img [src]="product.image1" />
+              <mat-grid-tile-footer class="cool-tile">
+                <div>{{ processProductName(product.name) | titlecase }}...</div>
+
+                <div>
+                  <strong> {{ product.prix }} CFA</strong>
+                </div>
+              </mat-grid-tile-footer>
+            </mat-grid-tile>
+          </mat-grid-list>
+ -->
+
+          <ion-slides
+            class="w-100"
+            style="height:450px"
+            pager="true"
+            [options]="slideOptsOne"
+            #slideWithNav
+            (ionSlideDidChange)="SlideDidChange(slideWithNav)"
+          >
+            <ion-slide *ngFor="let product of products">
+              <div
+                class="card m-1"
+                [routerLink]="['/product-details/d', product.id]"
+                routerLinkActive="router-link-active"
+              >
+                <img [src]="product.image1" alt="" />
+                <div class="card-footer text-center white-bg">
+                  <div>{{ processProductName(product.name) | titlecase }}..</div>
+
+                  <div>
+                    <strong style="color: #2c2d78 !important;"> {{ product.prix }} CFA</strong>
+                  </div>
+                </div>
+              </div>
+            </ion-slide>
+          </ion-slides>
+        </div>
+        <ng-template #loading>
+          <div class="centerify">
+            <mat-spinner></mat-spinner>
+          </div>
+        </ng-template>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
